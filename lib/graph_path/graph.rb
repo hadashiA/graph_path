@@ -49,5 +49,10 @@ module GraphPath
         edges.each
       end
     end
+
+    def search(start, target, **options)
+      searcher = options[:searcher] || GraphPath::Dfs
+      searcher.search(self, start, target)
+    end
   end
 end
