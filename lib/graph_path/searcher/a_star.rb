@@ -22,7 +22,7 @@ module GraphPath
           return routes if node == target
 
           graph.each_edges(node) do |edge|
-            h_cost = block.call(graph, target, edge.to)
+            h_cost = block_given? ? block.call(target, edge.to) : 1
             g_cost = g_costs[node] + edge.cost
 
             if search_frontier_edges[edge.to].nil?

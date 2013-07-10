@@ -5,7 +5,7 @@ include GraphPath
 describe Searcher::AStar do
   describe '.search' do
     describe 'ヒューリスティック関数がない場合' do
-      subject { Searcher::AStar.search(graph, start, target){|graph, target, node| 1 } }
+      subject { Searcher::AStar.search(graph, start, target) }
 
       let(:graph) {
         Graph.new(1 => [[5, 2.9], [6, 1.0]],

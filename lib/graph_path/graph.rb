@@ -51,7 +51,7 @@ module GraphPath
     end
 
     def search(start, target, **options)
-      searcher = options[:searcher] || GraphPath::Dfs
+      searcher = options[:searcher] || GraphPath::Searcher::AStar
       searcher.search(self, start, target)
     end
   end
