@@ -37,5 +37,14 @@ describe Graph do
 
       it { should have(2).items }
     end
+
+    describe 'specify edge cost' do
+      subject {
+        graph = Graph.new(1 => [[2, 1.9], [3, 2.5]])
+        graph.each_edges(1).first
+      }
+
+      its(:cost) { should eq(1.9) }
+    end
   end
 end

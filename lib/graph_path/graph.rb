@@ -8,8 +8,8 @@ module GraphPath
 
       if args.first.is_a?(Hash)
         args.first.each do |node, dests|
-          dests.each do |dest|
-            add_edge node, dest
+          dests.each do |(dest, cost)|
+            add_edge node, dest, (cost || 1)
           end
         end
       else
@@ -33,7 +33,7 @@ module GraphPath
       @nodes.size > 0
     end
 
-    def add_edge(from, to, cost = nil)
+    def add_edge(from, to, cost)
       edge = Edge.new(from, to, cost)
       @edges << edge
       @nodes[from] << edge
