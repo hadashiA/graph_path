@@ -1,24 +1,48 @@
 # GraphPath
 
-TODO: Write a gem description
-
-## Installation
-
-Add this line to your application's Gemfile:
-
-    gem 'graph_path'
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install graph_path
+経路探索アルゴリズムの練習。
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+graph = GraphPath::Graph.new(1 => [[5, 2.9], [6, 1.0]],
+                             2 => [[3, 3.1]],
+                             3 => [[5, 0.8]],
+                             4 => [[3, 3.7]],
+                             5 => [[2, 1.9], [6, 3.0]],
+                             6 => [[4, 1.1]]
+                             )
+```
+
+![Sampele Graph](sample.png)
+
+```ruby
+routes = graph.search(1, 3)
+routes.found? #=> true
+routes.path   #=> [1, 6, 4, 3]
+```
+
+## Options
+
+* `:searcher`
+  * GraphPath::Searcher::Dfs      - Depth First Search
+  * GraphPath::Searcher::Bfs      - Breadth First Search
+  * GraphPath::Searcher::Dijkstra - Dijkstra
+  * GraphPath::Searcher::AStar    - A*
+
+```ruby
+graph.search(1, 3, searcher: GraphPath::Searcher::Dfs)
+```
+
+```ruby
+graph.search(1, 3, searcher: GraphPath::Searcher::AStar) do |target, node|
+  target - node # A* Heuristic calculate
+end
+```
+
+## TODO
+
+いろいろ
 
 ## Contributing
 
